@@ -1,9 +1,18 @@
 // ITERATION 1
 
 function updateSubtotal(product) {
-  console.log('Calculating subtotal, yey!');
+  
+  const price = product.queryselector('.price span').innerHTML
 
-  //... your code goes here
+  const quantity = product.querySelector('.quantity input').valueAsNumber 
+
+  const subtotal = +price * quantity
+
+  const subtotalElement = product.querySelector('.subtotal span')
+
+  subtotalElement.innerHTML = subtotal
+
+  return subtotal 
 }
 
 function calculateAll() {
@@ -13,25 +22,68 @@ function calculateAll() {
   updateSubtotal(singleProduct);
   // end of test
 
+
+
+
   // ITERATION 2
-  //... your code goes here
+  
+const productCollection = document.getElementsByClassName('product')
+
+const productList = [...productCollection]
+
+let total = 0;
+
+productList.forEach(product => total += updateSubtotal(product))
+
 
   // ITERATION 3
-  //... your code goes here
+  console.log (total)
 }
 
 // ITERATION 4
 
 function removeProduct(event) {
   const target = event.currentTarget;
+  const parent = target.parentNode.parentNode
+  parent.remove()
+
+  calculateAll()
+
   console.log('The target in remove is:', target);
-  //... your code goes here
+  
 }
+
+
+
+
 
 // ITERATION 5
 
 function createProduct() {
-  //... your code goes here
+  const nameImput = document.querySelector('.create-product input')
+
+  let nameValue = nameImput.valueAsNumber
+
+  const priceInput = document.querySelector('.create-product input[type=number]')
+
+  let priceValue = priceInput.valueAsNumber
+
+  if (nameValue == '' || !priceValue){
+    window.alert('You should add the information')
+    return
+  }
+   
+  let newProduct = document.createAttribute.createElement ('tr')
+  newProduct.className = 'product'
+
+  newProduct.innerHTML= 
+
+  <td class="name">
+    <span>${nameValue}</span>
+  </td>
+
+
+
 }
 
 window.addEventListener('load', () => {
